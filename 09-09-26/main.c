@@ -1,14 +1,17 @@
 #include <stdio.h>
 
 
-void printb(int n){
-	for(int i=0; i<n; i++) printf("*");
+void printBorder(int count){
+	for(int i=0; i<count; i++) printf("*");
 	printf("\n");
 }
 
 int main(){
-	printb(40);
+	int c;
+	printf("Enter the nmumber of asterisks: ");
+	scanf(" %d",&c);
+	printBorder(c);
 	printf("HI\n");
-	printb(40);
+	printBorder(c);
 	
 }
