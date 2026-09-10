@@ -10,7 +10,8 @@ x = n.linspace(-2, 2, 500)
 y = ((e**x) - 2)
 
 # Solution
-sol = log(2)
+##sol = log(2)
+
 print("Solution: x =", sol)
 
 # Plot
