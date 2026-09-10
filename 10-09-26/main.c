@@ -3,20 +3,28 @@
 
 float e = M_E;
 
-void diff(float *xo){
-	*xo = *xo - ((pow(e,*xo)-2)/(pow(e,*xo)));
+void diff(float *xo)
+{
+    float xi = *xo - (expf(*xo) - 2) / expf(*xo);
+    *xo = xi;
 }
 
-int main(void){
-//e^x -2 = 0 implies x = ln(2)	
-	
-	//running newton raphson
-	float root = 1;
-	for (int i=0;i<1000;i++){
-	     diff(&root);	
-	}
+int main(void)
+{
+    // e^x - 2 = 0 implies x = ln(2)
 
-	//orinting the root
-	printf("The root is %.6f \n",root);
-	
+    // Running Newton-Raphson
+    float root = 1.0f;
+    float old_root;
+
+    do {
+        old_root = root;
+        diff(&root);
+
+    } while (fabsf(root - old_root) > 1e-6f);
+
+    // Printing the root
+    printf("Root = %.6f\n", root);
+
+    return 0;
 }
