@@ -7,7 +7,7 @@ import numpy as n
 import subprocess
 
 x = n.linspace(-2, 2, 500)
-y = e**x - 2
+y = ((e**x) - 2)
 
 # Solution
 sol = log(2)
