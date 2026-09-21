@@ -1,8 +1,11 @@
 #Code BY T.Pranay
 #Date 10-09-26
 
+import sys
 import subprocess
 import numpy as np
+sys.path.append("/sdcard/.github/matgeo/codes/CoordGeo")
+from line.funcs import *
 import matplotlib.pyplot as plt
 
 print("Equations:")
@@ -72,18 +75,17 @@ for k in [1, 2, 3, 5, 6]:
 
     solve_matrix(k)
 
-x = np.linspace(-10,10,1000)
+x = line_gen(-10,10)
 
 plt.xlabel("X-Axis")
 plt.ylabel("Y-Axis")
 
-for i in range(1,6):
-    k_val = i
+k_val = i
     
-    y1 = (6-2*x)/3
-    y2 = (3*k_val-4*x)/6
-    plt.plot(x,y1)
-    plt.plot(x,y2)
+y1 = (6-2*x)/3
+y2 = (3*k_val-4*x)/6
+plt.plot(x,y1)
+plt.plot(x,y2)
 
 plt.savefig("graphy.pdf")
 subprocess.run(["termux-open","graphy.pdf"])
