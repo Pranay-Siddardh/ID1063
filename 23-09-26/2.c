@@ -19,9 +19,13 @@ return total;
 
 int main()
 {
-int day = 1;
-int month = 2;
+int day;
+int month;
 
+printf("Enter the day: ");
+scanf("%d",&day);
+printf("Enter the month: ")
+scanf(" %d",&month);
 int output = daysElapsed(day, month);  
 
 printf("day = %d\n", day);  
