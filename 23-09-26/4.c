@@ -20,14 +20,16 @@ int main()
 {
     int n;
     double tolerance;
-
+	printf("Enter the number of readings: ");
     scanf("%d", &n);
 
     double a[n];
 
+    printf("Input the reading array: ");
     for (int i = 0; i < n; i++)
         scanf(" %lf", &a[i]);
 
+    printf("Enter the tolerance for difference: ");
     scanf("%lf", &tolerance);
 
     printf("%d\n", firstStable(a, n, tolerance));

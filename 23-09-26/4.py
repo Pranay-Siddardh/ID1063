@@ -12,7 +12,9 @@ def firstStable(a, n, tolerance):
 
 
 #reading the number string
+print("Enter the number of readings: ")
 n = int(input())
+print("Enter the readings: ")
 #converting number string into array
 a = list(map(float, input().split()))
 tolerance = float(input())
