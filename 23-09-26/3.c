@@ -1,13 +1,17 @@
 
 #include <stdio.h>
 
+//the length of consecutive 1 counter
 int runLength(int a[], int n, int i)
 {
+// returning length 0 as there is no 1
 if (a[i] == 0)
 return 0;
 
 int count = 0;  
 
+//this will check the one repeating for the remaining part of array frmo i and then returns l
+//
 while (i < n && a[i] == 1)  
 {  
     count++;  
@@ -41,7 +45,9 @@ int answer = 0;
 for (int i = 0; i < n; i++)  
 {  
     int length = runLength(a, n, i);  
-
+//then going to i+1 if the folloeing below beak condition doesnt satisfy.
+//
+//and then for each and every i , we check the length 
     if (length > k)  
     {  
         // The violation occurs at the kth+1  
