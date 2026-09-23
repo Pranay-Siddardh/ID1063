@@ -24,7 +24,7 @@ int month;
 
 printf("Enter the day: ");
 scanf("%d",&day);
-printf("Enter the month: ")
+printf("Enter the month: ");
 scanf(" %d",&month);
 int output = daysElapsed(day, month);  
 
