@@ -1,3 +1,6 @@
+#Code by pranay
+#date 23-09-26
+
 import numpy as np
 
 def runLength(a, i):

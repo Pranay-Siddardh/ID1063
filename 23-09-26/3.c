@@ -1,4 +1,4 @@
-
+//code by pranay 23-09-26
 #include <stdio.h>
 
 //the length of consecutive 1 counter
