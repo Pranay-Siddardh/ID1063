@@ -1,0 +1,65 @@
+Question 1
+
+Sensor Stabilization
+
+A sensor produces n readings a[0], a[1], ..., a[n-1].
+The absolute differences between successive readings are guaranteed to be non-increasing.
+
+Write a function
+
+int firstStable(double a[], int n, double tolerance)
+
+that returns the first index i such that
+
+|a[i+1] - a[i]| <= tolerance.
+
+Return -1 if there is no such index. Call this function from main and print the returned value.
+
+Input
+The first line contains an integer n (n >= 2).
+The second line contains n real numbers.
+The third line contains the tolerance, a positive real number.
+
+Output
+Print the index returned by firstStable.
+
+Sample Input: 5
+10.0 9.4 9.0 8.8 8.7
+0.25
+
+Sample Output:
+2
+
+
+Question-2
+
+A grayscale image is represented by an m x n matrix. Each entry is an integer from 0 to 255, where 0 represents black and 255 represents white.
+
+Given a threshold T, convert the grayscale image to a black-and-white image as follows:
+- If a pixel value is at least T, replace it by 255.
+- Otherwise, replace it by 0.
+
+Input
+The first line contains two integers m and n, the number of rows and columns.
+The second line contains the integer T.
+The next m lines each contain n integers representing the grayscale image.
+
+Output
+Print the resulting m x n black-and-white matrix, with entries separated by spaces.
+
+Constraints
+1 <= m, n <= 100
+0 <= T <= 255
+0 <= each pixel value <= 255
+
+Sample Input:
+3 4
+128
+0 50 127 128
+129 180 255 100
+30 140 90 200
+
+Sample Output:
+0 0 0 255
+255 255 255 0
+0 255 0 255
