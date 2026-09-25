@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.ndimage import gaussian_filter
 
 # ==============================================================================
 # STEP 1: READ THE JPG AND EXTRACT THE RAW RGB MATRIX
@@ -81,6 +82,21 @@ def grayscale_to_adaptive_bw(grayscale_matrix):
     bw_adaptive = np.where(grayscale_matrix >= mu, 255, 0).astype(np.uint8)
     return bw_adaptive
 
+def gaussian_adaptive_bw(grayscale_matrix, sigma=15, C=3):
+    """
+        Applies Gaussian-weighted local adaptive thresholding.
+        - sigma: Controls the size of the smooth local neighborhood (higher = broader context).
+        - C: A small constant subtracted from the local mean to fine-tune sensitivity.
+        """
+        # 1. Calculate a smooth local mean field using a Gaussian filter
+        # This replaces harsh square boxes with a smooth, continuous mathematical surface.
+    local_mean = gaussian_filter(grayscale_matrix.astype(np.float32), sigma=sigma)
+
+        # 2. Threshold: Pixel is white if it's brighter than the smooth local average minus C
+    bw_adaptive = np.where(grayscale_matrix >= (local_mean - C), 255, 0).astype(np.uint8)
+    
+    return bw_adaptive
+
 
 # ==============================================================================
 # EXECUTION PIPELINE
@@ -98,6 +114,8 @@ if __name__ == "__main__":
     # 2. Thresholding Algorithms
     static_bw    = grayscale_to_static_bw(grayscale, threshold=128)
     adaptive_bw  = grayscale_to_adaptive_bw(grayscale)
+    gaussian1 = gaussian_adaptive_bw(grayscale, sigma=20, C=3)
+    gaussian2 = gaussian_adaptive_bw(grayscale, sigma=10, C=3)
 
     # 3. Print Matrix Verifications
     print("\n==================================================")
@@ -108,14 +126,22 @@ if __name__ == "__main__":
     print(f"3. Grayscale Array Shape      : {grayscale.shape} (H, W) 2D Scalar Array")
     print(f"4. Static B&W Shape (128 Ref) : {static_bw.shape} (H, W) 2D Binary Array")
     print(f"5. Adaptive B&W Array Shape   : {adaptive_bw.shape} (H, W) 2D Binary Array")
+    print(f"5. Adaptive Gaussian B&W Array Shape   : {gaussian1.shape} (H, W) 2D Binary Array")
+    print()
+    print()
     print("==================================================\n")
 
     # 4. Save Outputs
     plt.imsave("output_grayscale.png", grayscale, cmap='gray')
     plt.imsave("output_ref.png", static_bw, cmap='gray')            # Static 128 reference
-    plt.imsave("output_adaptive_bw.png", adaptive_bw, cmap='gray')  # Dynamic adaptive output
-    
+    plt.imsave("output_adaptive_bw.png", adaptive_bw, cmap='gray')  # Dynamic adaptive output 
+    plt.imsave("gaussian1.png", gaussian1, cmap='gray')
+    plt.imsave("gaussian2.png", gaussian2, cmap='gray')
+
+
+
     print("[SUCCESS] Files successfully saved:")
     print("  - output_grayscale.png")
     print("  - output_ref.png (Static 128 Reference Breaker)")
+    print(" - gaussian(1 & 2).png (Local Dynamic Scaling)")
     print("  - output_adaptive_bw.png (Adaptive Dynamic Threshold)")
